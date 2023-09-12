@@ -2,7 +2,7 @@ const { Sequelize } = require('sequelize');
 const config = require('../config/config')
 require('dotenv').config();
 
-const sequelize = new Sequelize(    );
+const sequelize = new Sequelize( config.development );
 
 try {
   sequelize.authenticate();
