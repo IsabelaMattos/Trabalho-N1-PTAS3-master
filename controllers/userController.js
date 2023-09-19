@@ -4,11 +4,11 @@ const jwt = require('jsonwebtoken');
 
 
 const createUser = async (req, res) => {
-    const { nome, senha, email} = req.body;
+    const {name, email, password} = req.body;
     await User.create({
-       nome:nome,
+       name:name,
        email:email,
-       senha:senha 
+       password:password 
 
     }).then(() => {
         res.json('Cadastro de usuário realizado com sucesso!');
@@ -19,7 +19,7 @@ const createUser = async (req, res) => {
     })
 } 
 const findUsers = async (req, res) => {
-    const users    = await User.findAll();
+    const users = await User.findAll();
     try {
         res.json(  users  );
     } catch (error) {
@@ -35,21 +35,21 @@ const deleteUser = async (req, res) => {
                 id:id
             }
         }).then(() => {
-            res.json("   Deletado com sucesso!");
+            res.json("Deletado com sucesso!");
         })
     } catch (error) {
-        res.status(404).json("   Erro ao deletar   ");
+        res.status(404).json("Erro ao deletar");
     }
 }
 const updateUser = async (req, res) => {
     const id = parseInt(req.params.id);
-    const {  nome, email, senha     } = req.body;
+    const {name, email, password} = req.body;
     try {
         await User.update(
             {
-                nome:nome,
+                name:name,
                 email:email,
-                senha:senha 
+                password:password 
             },
             {
                 where: {
@@ -57,32 +57,31 @@ const updateUser = async (req, res) => {
                 }
             }
         ).then(() => {
-            res.json(" Atualizado com sucesso!           ");
+            res.json("Atualizado com sucesso!");
         })
     } catch (error) {
-        res.status(404).json(" Erro ao atualizar               !");
+        res.status(404).json("Erro ao atualizar!");
     }
 }
 const authenticatedUser = async (req, res) => {
-    const {   email, senha    } = req.body;
+    const {   email, password    } = req.body;
     try {
         const isUserAuthenticated = await User.findOne({
             where: {
-               
                 email:email,
-                senha:senha 
+                password:password 
             }
         })
         const token = jwt.sign({
             email: isUserAuthenticated.email,
-            senha: isUserAuthenticated.senha
+            password: isUserAuthenticated.password
         },
             secret.secret, {
             expiresIn: 86400,
         })
         return res.json({
             email: isUserAuthenticated.email,
-            senha: isUserAuthenticated.senha,
+            password: isUserAuthenticated.password,
             token: token
         });
     } catch (error) {

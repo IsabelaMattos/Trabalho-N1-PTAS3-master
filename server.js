@@ -17,7 +17,6 @@ app.use(express.json(), routes, cors());
 app.listen(port, () => { console.log(`Run server...${port}`) });
 
 
-
 app.get('/', (req, res) => {
     const filePath = path.join(__dirname, 'views', 'index.html');
     res.sendFile(filePath);
