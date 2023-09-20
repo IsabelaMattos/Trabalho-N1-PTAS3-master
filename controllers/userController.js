@@ -80,6 +80,7 @@ const authenticatedUser = async (req, res) => {
             expiresIn: 86400,
         })
         return res.json({
+            name: isUserAuthenticated.name,
             email: isUserAuthenticated.email,
             password: isUserAuthenticated.password,
             token: token

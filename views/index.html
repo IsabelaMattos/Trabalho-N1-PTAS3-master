@@ -8,10 +8,31 @@
 </head>
 
 <body>
-    <h1>API - USER</h1>
-    <h1><i>Tecnologias utilizadas</i></h1><br/>
+    <h1><i>API - USER</i></h1>
+    <h1><i>Tecnologias utilizadas</i></h1>
 
-    <i>Criei o banco de dados no pgAdmin com o meu nome e ficou assim: DB_isabela. Abri o terminal e dei o seguinte comando npx sequelize-cli db:create</i>
+    <i>Criei o banco de dados no pgAdmin com o meu nome e ficou assim: DB_isabela. Abri o terminal e dei o seguinte comando npx sequelize-cli db:create</i><br/><br/>
+
+    <i>Fiz as alterações nos seguintes arquivos: connection.js, User.js e userController.js.</i><br/>
+
+    <i>Primeira alteração (connection.js)</i>
+    <i>Adicionei na linha 5 o config.development</i><br/>
+
+    <i>Segunda alteração (User.js)</i>
+    <i>Inseri o connection na const pra poder estar funcionando a aplicação e em todos os types inseri o connection.Sequelize.STRING</i><br/>
+
+    <i>Terceira alteração (userController.js)</i>
+    <i>Nessa parte é só completar o código, começando a adicionar na const o {name, email, password}. Depois, abaixo do await User.create coloquei ({name:name, email:email, password:password}). 
+       Em seguida, coloquei as mensagens no res.json e no console.log avisando se tá cadastrando o usuário, erro ao cadastrar, erro na busca, 
+    deletado, atualizado, erro na atulização e autenticação.</i>
+    <i>Na linha 22, no const completei users e na linha 24, no res.json completei com (  users  ).</i><br/>
+
+    <i>No const deleteUser na linha 32, completei a where com o seguinte comando { id:id }</i><br/>
+
+    <i>Na linha 46, completei a const com os seguintes comandos {name, email, password} e no await completei com name:name, email:email, password:password 
+       Na linha 67, completei novamente na const com os seguintes comandos { email, password }, no where completei com os { email:email, password:password }.
+       Na const token completei com os comandos ({email: isUserAuthenticated.email, password: isUserAuthenticated.password})
+    </i>
     
 </body>
 
