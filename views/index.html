@@ -8,34 +8,37 @@
 </head>
 
 <body>
-    <h1><i>API - USER</i></h1>
+    <center><h1><i>API - USER</i></h1>
     <h1><i>Tecnologias utilizadas</i></h1>
 
     <i>Criei o banco de dados no pgAdmin com o meu nome e ficou assim: DB_isabela. Abri o terminal e dei o seguinte comando npx sequelize-cli db:create</i><br/><br/>
 
-    <i>Fiz as alterações nos seguintes arquivos: connection.js, User.js e userController.js.</i><br/>
+    <i>Fiz as alterações nos seguintes arquivos: connection.js, User.js e userController.js.</i><br/><br/>
 
-    <i>Primeira alteração (connection.js)</i>
-    <i>Adicionei na linha 5 o config.development</i><br/>
+    <b><i>Primeira alteração (connection.js)</i></b><br/>
+    <i>Adicionei na linha 5 o config.development. O código configura uma conexão com um BD utilizando o Sequelize, tenta autenticar essa conexão e exporta as variáveis necessárias para que a conexão seja utilizada em outras partes da aplicação.</i><br/><br/>
 
-    <i>Segunda alteração (User.js)</i>
-    <i>Inseri o connection na const pra poder estar funcionando a aplicação e em todos os types inseri o connection.Sequelize.STRING</i><br/>
+    <b><i>Segunda alteração (User.js)</i></b><br/>
+    <i>Inseri o connection na const pra poder estar funcionando a aplicação e em todos os types inseri o connection.Sequelize.STRING. Ele define a estrutura da tabela de usuários no BD usando o Sequelize, especificando os campos e suas propriedades. Além disso, ele sincroniza o modelo com o BD e exporta-o para que possa ser utilizado em outras partes do código para realizar operações de criação, leitura, atualização e exclusão de registro dos usuários.</i><br/><br/>
 
-    <i>Terceira alteração (userController.js)</i>
-    <i>Nessa parte é só completar o código, começando a adicionar na const o {name, email, password}. Depois, abaixo do await User.create coloquei ({name:name, email:email, password:password}). 
+    <b><i>Terceira alteração (userController.js)</i></b><br/>
+    <i>Nessa parte é só completar o código, começando no arquivo createUser a adicionar na const o {name, email, password}. Depois, abaixo do await User.create coloquei ({name:name, email:email, password:password}). 
        Em seguida, coloquei as mensagens no res.json e no console.log avisando se tá cadastrando o usuário, erro ao cadastrar, erro na busca, 
-    deletado, atualizado, erro na atulização e autenticação.</i>
-    <i>Na linha 22, no const completei users e na linha 24, no res.json completei com (  users  ).</i><br/>
+    deletado, atualizado, erro na atulização e autenticação. O método 'User.create' serve para um novo registro de usuário no banco de dados com os dados fornecidos.</i>
+    <i>No arquivo findUsers, no const completei users e no res.json completei com (  users  ). Esta função busca todos os usuários cadastrados no BD usando o método 'User.findAll'.</i><br/><br/>
 
-    <i>No const deleteUser na linha 32, completei a where com o seguinte comando { id:id }</i><br/>
+    <i>No arquivo deleteUser, na linha 32, completei a where com o seguinte comando { id:id }. Esta função é responsável por excluir um usuário do DB com base no ID fornecido na URL da requisição ('req.params.id').
+        Utiliza o método 'User.destroy' para excluir o usuário com o ID especificado. Se a exclusão for bem-sucedida, responde com uma mensagem JSON indicando que o usuário foi deletado com sucesso. 
+    </i><br/><br/>
 
-    <i>Na linha 46, completei a const com os seguintes comandos {name, email, password} e no await completei com name:name, email:email, password:password 
+    <i>No arquivo 'updateUser', na linha 46, completei a const com os seguintes comandos {name, email, password} e no await completei com name:name, email:email, password:password 
        Na linha 67, completei novamente na const com os seguintes comandos { email, password }, no where completei com os { email:email, password:password }.
        Na const token completei com os comandos ({email: isUserAuthenticated.email, password: isUserAuthenticated.password}).
-       No return completei o name com isUserAuthenticated.name.
-    </i><br/>
+       No return completei o name com isUserAuthenticated.name. Esta função é usada para atualizar os dados de um usuário com base noID fornecido na URL da requisição ('req.params.id') e nos dados enviados no corpo da requisição ('req.body'). Utiliza o método 'User.update' pra atualizar os campos do usuário 
+       no banco de dados.
+    </i><br/><br/>
 
-    <i>Por fim fiz a instalação do Thunder Client.</i>
+    <i>Por fim fiz a instalação do Thunder Client.</i></center>
     
 </body>
 
