@@ -79,10 +79,9 @@ const authenticatedUser = async (req, res) => {
             secret.secret, {
             expiresIn: 86400,
         })
-        return res.json({
+        res.cookie('token', token, { httpOnly: true }).json({
             name: isUserAuthenticated.name,
             email: isUserAuthenticated.email,
-            password: isUserAuthenticated.password,
             token: token
         });
     } catch (error) {
