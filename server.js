@@ -13,8 +13,8 @@ const port = process.env.PORT || 3003;
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.urlencoded({ extended: false }));
 
+app.use(cookieParser);
 
-const routes = require('./routers/routes');
 
 app.use(
     expressJWT({
@@ -25,6 +25,7 @@ app.use(
         path:["/user/authenticate"]
     })
 );
+const routes = require('./routers/routes');
 app.use(express.json(), routes, cors());
 app.listen(port, () => { console.log(`Run server...${port}`) });
 

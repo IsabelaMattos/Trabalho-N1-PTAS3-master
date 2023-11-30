@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const secret = require('../config/auth.json');
 const jwt = require('jsonwebtoken');
-
+require('dotenv').config();
 
 const createUser = async (req, res) => {
     const {name, email, password} = req.body;
@@ -76,7 +76,7 @@ const authenticatedUser = async (req, res) => {
             email: isUserAuthenticated.email,
             password: isUserAuthenticated.password
         },
-            secret.secret, {
+            process.env.SECRET, {
             expiresIn: 86400,
         })
         res.cookie('token', token, { httpOnly: true }).json({
